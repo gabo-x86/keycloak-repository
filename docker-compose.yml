@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    command: start-dev
+    environment:
+      - KEYCLOAK_ADMIN=keycloak
+      - KEYCLOAK_ADMIN_PASSWORD=keycloak
+      - KEYCLOAK_USER=user
+      - KEYCLOAK_PASSWORD=user
+      - DB_VENDOR=postgres
+      - DB_USER=keycloak
+      - DB_PASSWORD=password
+      - DB_ADDR=db
+      - DB_DATABASE=keycloak
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak-data:/opt/keycloak/data
+      - ./themes:/opt/keycloak/themes
+    networks:
+      - keycloak-bridge
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    networks:
+      - keycloak-bridge
+
+networks:
+  keycloak-bridge:
+    driver: bridge
