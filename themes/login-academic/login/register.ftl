@@ -26,7 +26,7 @@
                   name="firstName"
                   tabindex="1"
                   autofocus
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
@@ -37,7 +37,7 @@
                   id="lastName"
                   name="lastName"
                   tabindex="2"
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
@@ -48,7 +48,7 @@
                   id="email"
                   name="email"
                   tabindex="3"
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
