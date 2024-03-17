@@ -35,6 +35,14 @@ services:
     networks:
       - keycloak-bridge
 
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web UI
+    networks:
+      - keycloak-bridge
+
 networks:
   keycloak-bridge:
     driver: bridge
