@@ -5,7 +5,6 @@ const app = Vue.createApp({
         required: (value) => !!value || ""
       },
       showpassword: false,
-      showpasswordConfirm: false,
       loading: false,
     };
   },

@@ -2,10 +2,10 @@
 <@layout.registrationLayout displayInfo=social.displayInfo displayWide=(realm.password && social.providers??); section>
   <div class="mb-5">
     <v-img
-      src="${url.resourcesPath}/img/keycloak-logo-text.png"
+      src="${url.resourcesPath}/img/academic-management-logo.png"
       aspect-ratio="1"
       max-width="500"
-      max-height="100"
+      max-height="200"
     /></v-img>
   </div>
   <v-card class="elevation-3">
@@ -83,12 +83,12 @@
                   <span class="form__error-msg">${kcSanitize(messagesPerField.get("password-confirm"))}</span>
                   <v-text-field
                     :rules="[rules.required]"            
-                    :append-icon="showpassword ? 'mdi-eye-off' : 'mdi-eye'"
-                    :type="showpassword ? 'text' : 'password'"
+                    :append-icon="showpasswordConfirm ? 'mdi-eye-off' : 'mdi-eye'"
+                    :type="showpasswordConfirm ? 'text' : 'password'"
                     id="password-confirm"
                     name="password-confirm"
                     label='${msg("passwordConfirm")}'
-                    @click:append="showpassword = !showpassword"
+                    @click:append="showpasswordConfirm = !showpasswordConfirm"
                     tabindex="6"
                   ></v-text-field>
                 </#if>

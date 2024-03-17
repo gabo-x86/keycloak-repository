@@ -1,13 +1,22 @@
 <#import "template.ftl" as layout>
-<@layout.registrationLayout displayInfo=social.displayInfo displayWide=(realm.password && social.providers??); section>
+<@layout.registrationLayout displayInfo=social.displayInfo displayMessage=true displayWide=(realm.password && social.providers??); section>
   <div class="mb-5">
     <v-img
-      src="${url.resourcesPath}/img/keycloak-logo-text.png"
+      src="${url.resourcesPath}/img/academic-management-logo.png"
       aspect-ratio="1"
       max-width="500"
-      max-height="100"
+      max-height="200"
     /></v-img>
   </div>
+  <#if message?has_content && message.type='success'>
+    <v-alert 
+      color="info"
+      icon="$info"
+      title="${msg('forgotPasswordSentMessage')}"
+      text="${msg('emailSentMessage')}"
+      class="text-left"
+    ></v-alert>
+  </#if>
   <v-card class="elevation-3">
     <v-card-title class="pt-10 pb-10">       
       <h3 class="headline">${msg("doLogIn")}</h3>

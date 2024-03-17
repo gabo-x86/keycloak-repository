@@ -42,16 +42,6 @@
 
             <v-col cols="6" align="center">
               <#nested "form">
-              
-              <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                <div class="alert-${message.type} ${properties.kcAlertClass!} pf-m-<#if message.type = 'error'>danger<#else>${message.type}</#if>">
-                  <div class="pf-c-alert__icon">
-                    <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                    <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                    <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
-                  </div>
-                </div>
-              </#if>
             </v-col>
 
           </v-row>
