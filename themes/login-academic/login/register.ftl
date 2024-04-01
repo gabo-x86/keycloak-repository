@@ -21,12 +21,12 @@
                 <span class="form__error-msg">${kcSanitize(messagesPerField.get("firstName"))}</span>
                 <v-text-field
                   label='${msg("firstName")}'
-                  :rules="[rules.require]"
+                  :rules="[rules.required]"
                   id="firstName"
                   name="firstName"
                   tabindex="1"
                   autofocus
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
@@ -37,7 +37,7 @@
                   id="lastName"
                   name="lastName"
                   tabindex="2"
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
@@ -48,7 +48,7 @@
                   id="email"
                   name="email"
                   tabindex="3"
-                  autocomplete="off"
+                  autocomplete="on"
                   clearable
                 ></v-text-field>
 
@@ -56,6 +56,7 @@
                 <span class="form__error-msg">${kcSanitize(messagesPerField.get("username"))}</span>
                   <v-text-field
                     label='${msg("username")}'
+                    value="${(login.username!'')}"
                     :rules="[rules.required]"
                     id="username"
                     name="username"
