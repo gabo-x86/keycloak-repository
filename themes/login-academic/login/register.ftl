@@ -56,7 +56,6 @@
                 <span class="form__error-msg">${kcSanitize(messagesPerField.get("username"))}</span>
                   <v-text-field
                     label='${msg("username")}'
-                    value="${(login.username!'')}"
                     :rules="[rules.required]"
                     id="username"
                     name="username"
