@@ -57,4 +57,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Postgres keycloak data
+pg-keycloak-data
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows

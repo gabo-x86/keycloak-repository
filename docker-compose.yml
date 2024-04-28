@@ -1,28 +1,26 @@
 version: '3.8'
 
 services:
-  keycloak:
-    image: quay.io/keycloak/keycloak:23.0
-    command: start-dev
+  keycloak-pg:
+    build: .
     environment:
+      - KEYCLOAK_IMPORT=/opt/keycloak/data/import/global.json
       - KEYCLOAK_ADMIN=keycloak
       - KEYCLOAK_ADMIN_PASSWORD=keycloak
-      - KEYCLOAK_USER=user
-      - KEYCLOAK_PASSWORD=user
-      - DB_VENDOR=postgres
-      - DB_USER=keycloak
-      - DB_PASSWORD=password
-      - DB_ADDR=keycloak-db
-      - DB_DATABASE=keycloak
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://keycloak-db/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=password
     ports:
       - "8081:8080"
     volumes:
-      - ./keycloak-data:/opt/keycloak/data
       - ./themes:/opt/keycloak/themes
     networks:
       - keycloak-bridge
+    entrypoint: /opt/keycloak/data/import/entrypoint.sh
     depends_on:
-      - keycloak-db
+      keycloak-db:
+        condition: service_healthy
 
   keycloak-db:
     image: postgres:15
@@ -31,9 +29,13 @@ services:
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=password
     ports:
-      - "5433:5432"
+      - "5432:5432"
+    volumes:
+      - ./pg-keycloak-data:/var/lib/postgresql/data
     networks:
       - keycloak-bridge
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
 
   mailhog:
     image: mailhog/mailhog
